@@ -1,0 +1,533 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="欢迎来到我的笔记！">
+  <meta name="author" content="wangcl">
+  <meta name="keywords" content="notebook">
+  <meta name="description" content="matlab截取图像Ⅱ 欢迎来到！德莱联盟  应该是CSDN之bruderlung的博客！你可以仔细阅读这篇文章，结合实例初步了解MATLAB的一些功能！ 程序要求 建立循环函数，通过程序依此读取十幅原始图像，然后将原始图像转存为灰度图像  确定数码管所显示数字的四角坐标，然后将其依次输出  依据之前寻找到的四个坐标，将数字部分以外的图像设置为黑色；  在(3)的基础上，通过编写程序将数字部分转存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像处理—裁剪;获取灰度图;获取坐标点">
+<meta property="og:url" content="https://bruderlung.github.io/2019/04/16/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E2%80%94%E8%A3%81%E5%89%AA;%E8%8E%B7%E5%8F%96%E7%81%B0%E5%BA%A6%E5%9B%BE;%E8%8E%B7%E5%8F%96%E5%9D%90%E6%A0%87%E7%82%B9/index.html">
+<meta property="og:site_name" content="Wangcl&#39;s NoteBook">
+<meta property="og:description" content="matlab截取图像Ⅱ 欢迎来到！德莱联盟  应该是CSDN之bruderlung的博客！你可以仔细阅读这篇文章，结合实例初步了解MATLAB的一些功能！ 程序要求 建立循环函数，通过程序依此读取十幅原始图像，然后将原始图像转存为灰度图像  确定数码管所显示数字的四角坐标，然后将其依次输出  依据之前寻找到的四个坐标，将数字部分以外的图像设置为黑色；  在(3)的基础上，通过编写程序将数字部分转存">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190417214330570.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190417214535778.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190417214023379.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190417214632466.png">
+<meta property="article:published_time" content="2019-04-16T14:52:08.000Z">
+<meta property="article:modified_time" content="2021-11-19T06:51:47.864Z">
+<meta property="article:author" content="wangcl">
+<meta property="article:tag" content="图像处理">
+<meta property="article:tag" content="图像裁剪">
+<meta property="article:tag" content="灰度图">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190417214330570.png">
+  
+  <title>图像处理—裁剪;获取灰度图;获取坐标点 - Wangcl&#39;s NoteBook</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"bruderlung.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Wangcl&#39;s NoteBook</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-music"></i>
+                Music
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Collection/">
+                <i class="iconfont icon-bookmark"></i>
+                收藏夹
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="图像处理—裁剪;获取灰度图;获取坐标点">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-04-16 22:52" pubdate>
+        2019年4月16日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">图像处理—裁剪;获取灰度图;获取坐标点</h1>
+            
+            <div class="markdown-body">
+              <h2 id="matlab截取图像Ⅱ"><a href="#matlab截取图像Ⅱ" class="headerlink" title="matlab截取图像Ⅱ"></a>matlab截取图像Ⅱ</h2><p> 欢迎来到！<del>德莱联盟</del>  应该是CSDN之bruderlung的博客！<br>你可以仔细阅读这篇文章，结合实例初步了解MATLAB的一些功能！</p>
+<h1 id="程序要求"><a href="#程序要求" class="headerlink" title="程序要求"></a>程序要求</h1><ol>
+<li><p><em>建立循环函数，通过程序依此读取十幅原始图像，然后将原始图像转存为灰度图像</em></p>
+</li>
+<li><p><em>确定数码管所显示数字的四角坐标，然后将其依次输出</em></p>
+</li>
+<li><p><em>依据之前寻找到的四个坐标，将数字部分以外的图像设置为黑色；</em></p>
+</li>
+<li><p><em>在(3)的基础上，通过编写程序将数字部分转存为一个较小的图像（该图像的尺寸由步骤（3）中的四个坐标计算得到）。</em></p>
+</li>
+</ol>
+<h1 id="建立循环函数"><a href="#建立循环函数" class="headerlink" title="建立循环函数"></a>建立循环函数</h1><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab">save_path=<span class="hljs-string">&#x27;D:\picture\&#x27;;    %获取图片所在位置</span><br><span class="hljs-string">img_path_list = dir(strcat(save_path,&#x27;</span>*.jpg&#x27;));   <span class="hljs-comment">%依次仅读取文件夹中的.jpg格式图片</span><br>img_num=<span class="hljs-built_in">length</span>(img_path_list);  <span class="hljs-comment">%判断图片个数</span><br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:img_num<br>    picture_name = img_path_list(<span class="hljs-built_in">i</span>).name;      <span class="hljs-comment">%获取图片的名称</span><br>    picture_1 = imread(strcat(save_path,picture_name));        <span class="hljs-comment">%1.建立循环函数依次读取原始图像</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="处理后效果："><a href="#处理后效果：" class="headerlink" title="处理后效果："></a><em>处理后效果：</em></h6><p><img src="https://img-blog.csdnimg.cn/20190417214330570.png" srcset="/img/loading.gif" lazyload alt="原始图片"></p>
+<h1 id="确定坐标"><a href="#确定坐标" class="headerlink" title="确定坐标"></a>确定坐标</h1><p><strong>ginput</strong>函数<br><strong>功能</strong>：允许用户以交互方式使用鼠标选定要裁剪的区域以此获取坐标点并以矩形方式裁剪</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">[x,y]=ginput(<span class="hljs-number">4</span>);             <span class="hljs-comment">%获取数码管所显示的数字的四角坐标，获取坐标时要按照左上，右上，左下，右下的顺序方式获取∵后面涂黑时有局限性</span><br></code></pre></td></tr></table></figure>
+<h1 id="灰度图"><a href="#灰度图" class="headerlink" title="灰度图"></a>灰度图</h1><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">picture_2=rgb2gray(picture_1);      <span class="hljs-comment">%将24位原始图转为8位灰度图</span><br></code></pre></td></tr></table></figure>
+<h6 id="处理后效果：-1"><a href="#处理后效果：-1" class="headerlink" title="处理后效果："></a><em>处理后效果：</em></h6><p><img src="https://img-blog.csdnimg.cn/20190417214535778.png" srcset="/img/loading.gif" lazyload alt="灰度图"></p>
+<h1 id="背景设为黑色"><a href="#背景设为黑色" class="headerlink" title="背景设为黑色"></a>背景设为黑色</h1><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs matlab">picture_1 = imread(strcat(save_path,picture_name));        <span class="hljs-comment">%1.建立循环函数依次读取原始图像</span><br>picture_2=rgb2gray(picture_1);      <span class="hljs-comment">%将24位原始图转为8位灰度图</span><br>picture_3 = picture_2;<br><span class="hljs-comment">%对除数字外的图像进行填充颜色</span><br><span class="hljs-keyword">for</span> m = <span class="hljs-number">1</span>:<span class="hljs-built_in">size</span>(picture_3,<span class="hljs-number">1</span>)            <br><span class="hljs-keyword">for</span> n = <span class="hljs-number">1</span>:<span class="hljs-built_in">size</span>(picture_3,<span class="hljs-number">2</span>)                <br>        <span class="hljs-keyword">if</span> n &lt; x(<span class="hljs-number">1</span>) || n &gt; x(<span class="hljs-number">4</span>) || m &lt; y(<span class="hljs-number">1</span>) || m &gt; y(<span class="hljs-number">4</span>)      ％不在矩形内的点变为黑色                   <br>            picture_3(m,n,<span class="hljs-number">1</span>) = <span class="hljs-number">0</span>;                <br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>imwrite(picture_3,[num2str(<span class="hljs-built_in">i</span>+<span class="hljs-number">10</span>),<span class="hljs-string">&#x27;.jpg&#x27;</span>]);<br></code></pre></td></tr></table></figure>
+<h6 id="处理后效果：-2"><a href="#处理后效果：-2" class="headerlink" title="处理后效果："></a><em>处理后效果：</em></h6><p><img src="https://img-blog.csdnimg.cn/20190417214023379.png" srcset="/img/loading.gif" lazyload alt="背景变黑图"></p>
+<h1 id="裁剪图片"><a href="#裁剪图片" class="headerlink" title="裁剪图片"></a>裁剪图片</h1><p><strong>imcrop</strong>函数<br><strong>功能</strong>：用于返回图像的一个裁剪区域。可把图像显示在一个图像窗口中</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">picture_4 = imcrop(picture_2,[x(<span class="hljs-number">1</span>),y(<span class="hljs-number">1</span>),<span class="hljs-built_in">abs</span>(x(<span class="hljs-number">1</span>)-x(<span class="hljs-number">4</span>)),<span class="hljs-built_in">abs</span>(y(<span class="hljs-number">1</span>)-y(<span class="hljs-number">4</span>))]);     <span class="hljs-comment">%对图像进行截取，(x1,y1)为数字左上角坐标，(x4,y4)为右下角的坐标。abs(x(1)-x(4))为x轴截取的长度，abs(y(1)-y(4))为y轴截取的长度。</span><br></code></pre></td></tr></table></figure>
+<h6 id="处理后效果：-3"><a href="#处理后效果：-3" class="headerlink" title="处理后效果："></a><em>处理后效果：</em></h6><p><img src="https://img-blog.csdnimg.cn/20190417214632466.png" srcset="/img/loading.gif" lazyload alt="截取数字图"></p>
+<h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%必读：获取坐标时需要用鼠标点击四次，分别为数字的四角，获取坐标时要按照左上，右上，左下，右下的顺序方式获取∵后面涂黑时有局限性</span><br>save_path=<span class="hljs-string">&#x27;D:\picture\&#x27;;    %获取图片所在位置  </span><br><span class="hljs-string">img_path_list = dir(strcat(save_path,&#x27;</span>*.jpg&#x27;));   <span class="hljs-comment">%依次仅读取文件夹中的.jpg格式图片</span><br>img_num=<span class="hljs-built_in">length</span>(img_path_list);  <span class="hljs-comment">%判断图片个数</span><br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:img_num	<br>    picture_name = img_path_list(<span class="hljs-built_in">i</span>).name;      <span class="hljs-comment">%获取图片的名称</span><br>    picture_1 = imread(strcat(save_path,picture_name));        <span class="hljs-comment">%1.建立循环函数依次读取原始图像</span><br>    picture_2=rgb2gray(picture_1);      <span class="hljs-comment">%将24位原始图转为8位灰度图</span><br>    <span class="hljs-comment">%size(picture_2);  %求出我的图像的大小</span><br>    <span class="hljs-comment">%s=1920</span><br>    imshow(picture_2)<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">i</span>==<span class="hljs-number">1</span>            <span class="hljs-comment">%用if只需要确定一次图像中数字的四角坐标</span><br>            [x,y]=ginput(<span class="hljs-number">4</span>);             <span class="hljs-comment">%获取数码管所显示的数字的四角坐标，</span><br>            imwrite(picture_2,[num2str(<span class="hljs-built_in">i</span>),<span class="hljs-string">&#x27;.jpg&#x27;</span>])   <span class="hljs-comment">%灰度图从01开始命名到10结束</span><br>            picture_3 = picture_2;<br>            <span class="hljs-comment">%对除数字外的图像进行填充颜色</span><br>            <span class="hljs-keyword">for</span> m = <span class="hljs-number">1</span>:<span class="hljs-built_in">size</span>(picture_3,<span class="hljs-number">1</span>)            <br>                <span class="hljs-keyword">for</span> n = <span class="hljs-number">1</span>:<span class="hljs-built_in">size</span>(picture_3,<span class="hljs-number">2</span>)                <br>                    <span class="hljs-keyword">if</span> n &lt; x(<span class="hljs-number">1</span>) || n &gt; x(<span class="hljs-number">4</span>) || m &lt; y(<span class="hljs-number">1</span>) || m &gt; y(<span class="hljs-number">4</span>)             <span class="hljs-comment">%不在矩形区域内的点变为黑色            </span><br>                        picture_3(m,n,<span class="hljs-number">1</span>) = <span class="hljs-number">0</span>;                <br>                    <span class="hljs-keyword">end</span>            <br>                <span class="hljs-keyword">end</span>        <br>            <span class="hljs-keyword">end</span><br>            imwrite(picture_3,[num2str(<span class="hljs-built_in">i</span>+<span class="hljs-number">10</span>),<span class="hljs-string">&#x27;.jpg&#x27;</span>]);    <span class="hljs-comment">%将涂黑的图片保存并从11开始命名到20结束</span><br>            picture_4 = imcrop(picture_3,[x(<span class="hljs-number">1</span>),y(<span class="hljs-number">1</span>),<span class="hljs-built_in">abs</span>(x(<span class="hljs-number">1</span>)-x(<span class="hljs-number">4</span>)),<span class="hljs-built_in">abs</span>(y(<span class="hljs-number">1</span>)-y(<span class="hljs-number">4</span>))]);<br>            imwrite(picture_4,[num2str(<span class="hljs-built_in">i</span>+<span class="hljs-number">20</span>),<span class="hljs-string">&#x27;.jpg&#x27;</span>]);    <span class="hljs-comment">%将截取的数字图像保存并从21开始命名到30结束</span><br>    <span class="hljs-keyword">else</span>    <br>            imwrite(picture_2,[num2str(<span class="hljs-built_in">i</span>),<span class="hljs-string">&#x27;.jpg&#x27;</span>]);         <span class="hljs-comment">%灰度图从01开始命名到10结束</span><br>            picture_3 = picture_2;<br>            <span class="hljs-comment">%对除数字外的图像进行填充颜色</span><br>            <span class="hljs-keyword">for</span> m = <span class="hljs-number">1</span>:<span class="hljs-built_in">size</span>(picture_3,<span class="hljs-number">1</span>)            <br>                <span class="hljs-keyword">for</span> n = <span class="hljs-number">1</span>:<span class="hljs-built_in">size</span>(picture_3,<span class="hljs-number">2</span>)                <br>                    <span class="hljs-keyword">if</span> n &lt; x(<span class="hljs-number">1</span>) || n &gt; x(<span class="hljs-number">4</span>) || m &lt; y(<span class="hljs-number">1</span>) || m &gt; y(<span class="hljs-number">4</span>)     <span class="hljs-comment">%不在矩形区域内的点变为黑色                    </span><br>                        picture_3(m,n,<span class="hljs-number">1</span>) = <span class="hljs-number">0</span>;                <br>                    <span class="hljs-keyword">end</span>            <br>                <span class="hljs-keyword">end</span>        <br>            <span class="hljs-keyword">end</span>  <br>            imwrite(picture_3,[num2str(<span class="hljs-built_in">i</span>+<span class="hljs-number">10</span>),<span class="hljs-string">&#x27;.jpg&#x27;</span>]);  <span class="hljs-comment">%将涂黑的图片保存并从11开始命名到20结束</span><br>            picture_4 = imcrop(picture_3,[x(<span class="hljs-number">1</span>),y(<span class="hljs-number">1</span>),<span class="hljs-built_in">abs</span>(x(<span class="hljs-number">1</span>)-x(<span class="hljs-number">4</span>)),<span class="hljs-built_in">abs</span>(y(<span class="hljs-number">1</span>)-y(<span class="hljs-number">4</span>))]);     <span class="hljs-comment">%对图像进行截取，(x1,y1)为数字左上角坐标，(x4,y4)为右下角的坐标。abs(x(1)-x(4))为x轴截取的长度，abs(y(1)-y(4))为y轴截取的长度。</span><br>            imwrite(picture_4,[num2str(<span class="hljs-built_in">i</span>+<span class="hljs-number">20</span>),<span class="hljs-string">&#x27;.jpg&#x27;</span>]);       <span class="hljs-comment">%将截取的数字图像保存并从21开始命名到30结束</span><br>        <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>[x,y]   <span class="hljs-comment">%矩阵中每一行依次为四点坐标</span><br><span class="hljs-comment">% 备注：1.刚开始if函数里面只写了[x,y]=ginput(4)但是运行后无法显示0的图像了，由于时间原因所以，就将处理的程序全部复制到i==1时里面</span><br><span class="hljs-comment">%       2.picture_1：24位rgb图象  3.picture_2:  8位灰度图  4.picture_3:黑色背景图</span><br><span class="hljs-comment">%       5.picture_4:数字提取图</span><br></code></pre></td></tr></table></figure>
+
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%9B%BE%E5%83%8F%E8%A3%81%E5%89%AA/">图像裁剪</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%81%B0%E5%BA%A6%E5%9B%BE/">灰度图</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    感谢您的阅读，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/04/18/%E5%A4%9A%E4%B8%AAimage%E8%BD%AC%E4%B8%BAgif/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">多个image转为gif</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/04/14/%E6%88%AA%E5%8F%96%E5%9B%BE%E5%83%8F%E6%8C%87%E5%AE%9A%E5%8C%BA%E5%9F%9F/">
+                        <span class="hidden-mobile">截取图像指定区域</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://wawowcl.top/" target="_blank" rel="nofollow noopener"><span>Wangcl</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

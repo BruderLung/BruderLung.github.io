@@ -1,0 +1,893 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="欢迎来到我的笔记！">
+  <meta name="author" content="wangcl">
+  <meta name="keywords" content="notebook">
+  <meta name="description" content="本文最后更新于 2021-11-14 17:10:33    一、注意事项1、更新参数后一定要下装，然后重启。 2、出口不报时，检查一下压板是否投上以及FA模式是否为0。 3、波形回放时：可能会有长波和短波，注意起始时间。 4、使用状态序列测试电流接地时，零压要比零流超前180° 5、测试重合闸功能时，要注意满足充电合闸时间。 6、测试后加速时要注意，由分到合时单独加一个状态，开出量为合，结束条件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="配网相关笔记">
+<meta property="og:url" content="https://bruderlung.github.io/2021/09/20/%E9%85%8D%E7%BD%91%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Wangcl&#39;s NoteBook">
+<meta property="og:description" content="本文最后更新于 2021-11-14 17:10:33    一、注意事项1、更新参数后一定要下装，然后重启。 2、出口不报时，检查一下压板是否投上以及FA模式是否为0。 3、波形回放时：可能会有长波和短波，注意起始时间。 4、使用状态序列测试电流接地时，零压要比零流超前180° 5、测试重合闸功能时，要注意满足充电合闸时间。 6、测试后加速时要注意，由分到合时单独加一个状态，开出量为合，结束条件">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/功放连接.svg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/网口维护.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/串口维护.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/104规约.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/18/FqxzX6urfiDAaHv.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/18/tm2UePXrDZsbdfV.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/18/XHDrMCaqZeLNcO8.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/18/EoISwDNf41LABCP.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/17/4YxylgsUJfDIRr3.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/17/cXiTLN8lS7KZwPe.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/17/tpZDVCxoaA3USwf.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/17/jJuxYA1zUwpdqlL.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/17/8MugoaGFbyCO5dx.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/17/OrUYD7P9Be6vml5.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/17/mOwbkUNIDSRT9CV.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/20/3xQ64qjfLgne9uT.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/20/lychiweOfqTGIka.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/20/ZyJ3XvNpadj517s.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/20/AJuqmYyic18VLU4.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/20/gjXENnfzTYatMAG.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/20/38BUImVcGnbEArg.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/20/oK1RgVh6iJPq7Oc.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/20/iAI3qSvjXBdn71R.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/20/5JGAVMCEYt6OLFX.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/常规保护/联络合闸告警.svg">
+<meta property="og:image" content="https://i.loli.net/2021/10/11/iSefCtowTKYdDGj.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/常规保护/三次重合闸.svg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/常规保护/大电流闭锁.svg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/常规保护/残压检测.svg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/常规保护/后加速.svg">
+<meta property="og:image" content="https://i.loli.net/2021/10/22/TNptGqlFYnhK95y.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/22/gQkiO5arU1Edlbh.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/22/PxbULZyjS1sJRTQ.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/17/6KDNIxB1pktGusd.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/接地方向.svg">
+<meta property="og:image" content="https://i.loli.net/2021/11/19/7pmNPjStg1ekJOQ.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/常规保护/接地方向自适应.svg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/智能就地型FA/来电延时合闸无压分闸.svg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/智能就地型FA/两侧有压闭锁.svg">
+<meta property="og:image" content="https://i.loli.net/2021/10/19/SbxHqt3aFOwNCnM.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/智能就地型FA/x时限.svg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/智能就地型FA/速断保护.svg">
+<meta property="og:image" content="https://i.loli.net/2021/10/19/2jRoAlDKgOzv695.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/智能就地型FA/永久性接地0.svg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/智能就地型FA/重合闸和闭锁0.svg">
+<meta property="og:image" content="https://i.loli.net/2021/10/19/mgEYorsWJT819kZ.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/14/SokMTVqCWd1QwZG.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/19/GOM1EpSkZPiKVfW.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/19/iKsBeR2d5CIFzLX.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/19/4yX1AeQVuRG6zO9.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/19/F93VtNZ8UGfcBOp.png">
+<meta property="article:published_time" content="2021-09-20T02:28:51.000Z">
+<meta property="article:modified_time" content="2021-11-19T09:01:39.443Z">
+<meta property="article:author" content="wangcl">
+<meta property="article:tag" content="notebook">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/功放连接.svg">
+  
+  <title>配网相关笔记 - Wangcl&#39;s NoteBook</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"bruderlung.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Wangcl&#39;s NoteBook</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-music"></i>
+                Music
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Collection/">
+                <i class="iconfont icon-bookmark"></i>
+                收藏夹
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="配网相关笔记">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-20 10:28" pubdate>
+        2021年9月20日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">配网相关笔记</h1>
+            
+            <div class="markdown-body">
+              <p class="note note-info">本文最后更新于 2021-11-14 17:10:33</p>
+
+
+
+<h1 id="一、注意事项"><a href="#一、注意事项" class="headerlink" title="一、注意事项"></a>一、注意事项</h1><p>1、更新参数后一定要<code>下装</code>，然后<code>重启</code>。</p>
+<p>2、<code>出口不报</code>时，检查一下<code>压板是否投上</code>以及<code>FA模式</code>是否为<code>0</code>。</p>
+<p>3、波形回放时：可能会有长波和短波，注意<code>起始时间</code>。</p>
+<p>4、使用状态序列测试电流接地时，零压要比零流<code>超前180°</code></p>
+<p>5、测试重合闸功能时，要注意<code>满足充电合闸时间</code>。</p>
+<p>6、测试后加速时要注意，由分到合时<code>单独加一个状态</code>，开出量为合，结束条件为时间触发。</p>
+<p>7、测试后加速时，分位要保持<code>30秒</code>以上再给合位</p>
+<p>8、测试一次重合闸时需要有四个状态，1正常，2故障，3正常，4正常（给个合位），且第一个状态需要等待大于30秒，<code>需要重合闸充电</code>。</p>
+<p>9、使用状态序列时要注意<code>第一个状态</code>的结束条件<code>不能</code>是分合位<code>翻转</code></p>
+<p>10、当不报<code>告警</code>时，注意观察一下<code>FTU的拨杆情况</code>。</p>
+<p>11、电池活化的意思就是：隔一段时间需要断开PT然后使用电池供电以达到延长电池寿命的目的。自动活化的<code>参数更改后</code>需要<code>重启</code>才能生效。电池活化周期 <code>day：每隔多少天；</code>电池活化时刻<code>hour：整点时开始进行活化；</code>电池活化时间<code>min：电池活化的时间长度（放电时间）</code></p>
+<p>12、过电压和低电压的<code>告警定值</code>是<code>百分比</code>，不是数值。</p>
+<p>13、恢复供电(合)→恢复供电(分)需要<code>3秒</code>，反之同理。</p>
+<p>14、看程序<code>版本</code>要重启。</p>
+<p>15、数字量的接线也需要接上<code>Input</code>。</p>
+<hr>
+<h1 id="二、继保仪问题总结"><a href="#二、继保仪问题总结" class="headerlink" title="二、继保仪问题总结"></a>二、继保仪问题总结</h1><h2 id="2-1-发不出数字量"><a href="#2-1-发不出数字量" class="headerlink" title="2.1.发不出数字量"></a>2.1.发不出数字量</h2><ol>
+<li>先检查配置发出的是否是数字量</li>
+<li>继保仪找61850配置</li>
+<li>通道设置≠报文类型</li>
+<li>点击【通道设置】→【FT3通道类型】→选择【国网12通道56字节12】</li>
+<li>然后配置一下映射通道</li>
+</ol>
+<h2 id="2-2-联机失败-切换DSP失败"><a href="#2-2-联机失败-切换DSP失败" class="headerlink" title="2.2.联机失败/切换DSP失败"></a>2.2.联机失败/切换DSP失败</h2><ul>
+<li>可以将网线拔下来重新插上试一下。</li>
+<li>重启</li>
+</ul>
+<h2 id="2-3-波形回放时电压电流缩放之后满足条件"><a href="#2-3-波形回放时电压电流缩放之后满足条件" class="headerlink" title="2.3.波形回放时电压电流缩放之后满足条件"></a>2.3.<code>波形回放时</code>电压电流<code>缩放</code>之后满足条件</h2><ul>
+<li><p>零序电压：原波形➗录波=26.615</p>
+</li>
+<li><p>零序电流：原波形➗录波=1</p>
+</li>
+</ul>
+<h2 id="2-4-功放连接方式"><a href="#2-4-功放连接方式" class="headerlink" title="2.4.功放连接方式"></a>2.4.功放连接方式</h2><div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/功放连接.svg" srcset="/img/loading.gif" lazyload  width = 90% height = 90%/>
+</div>
+
+<hr>
+<h1 id="三、维护软件问题总结"><a href="#三、维护软件问题总结" class="headerlink" title="三、维护软件问题总结"></a>三、维护软件问题总结</h1><h2 id="3-1-连接设置"><a href="#3-1-连接设置" class="headerlink" title="3.1.连接设置"></a>3.1.连接设置</h2><h3 id="3-1-1-网口维护设置"><a href="#3-1-1-网口维护设置" class="headerlink" title="3.1.1.网口维护设置"></a>3.1.1.网口维护设置</h3><div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/网口维护.png" srcset="/img/loading.gif" lazyload  width = 30% height = 30%/>
+</div>
+`注意事项`：
+    不要忘记`下装重启`
+    **需要设置一下`端口号`**
+    电脑端需要设置好`网口1`同网段的IP
+
+<hr>
+<h3 id="3-1-2-串口维护设置"><a href="#3-1-2-串口维护设置" class="headerlink" title="3.1.2.串口维护设置"></a>3.1.2.串口维护设置</h3><div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/串口维护.png" srcset="/img/loading.gif" lazyload  width = 30% height = 30% align= center/>
+</div>
+
+<hr>
+<h3 id="3-1-3-104规约设置"><a href="#3-1-3-104规约设置" class="headerlink" title="3.1.3.104规约设置"></a>3.1.3.104规约设置</h3><div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/104规约.png" srcset="/img/loading.gif" lazyload  width = 30% height = 30%/>
+</div>
+`注意事项`：
+    1、不要忘记设置`规约参数`,下装`重启`。
+    2、使用网线将电脑和FTU`网口`连接起来。
+    3、打开IEC104客户端软件，将IP设为FTU`网口1`地址。
+    4、给电脑添加`同一网段`下的IP。
+    5、不要忘记设置`端口号`保持一致。
+    
+
+<hr>
+<h3 id="3-1-4-工装连接问题"><a href="#3-1-4-工装连接问题" class="headerlink" title="3.1.4.工装连接问题"></a>3.1.4.工装连接问题</h3><p>​    1、遥控：短接后连接到储能<br>​    2、遥信：短接后连接到公共端</p>
+<h2 id="3-2-文件说明"><a href="#3-2-文件说明" class="headerlink" title="3.2.文件说明"></a>3.2.文件说明</h2><p><img src="https://i.loli.net/2021/11/18/FqxzX6urfiDAaHv.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://i.loli.net/2021/11/18/tm2UePXrDZsbdfV.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<h2 id="3-3-参数说明"><a href="#3-3-参数说明" class="headerlink" title="3.3.参数说明"></a>3.3.参数说明</h2><h3 id="3-3-1-时限说明"><a href="#3-3-1-时限说明" class="headerlink" title="3.3.1.时限说明"></a>3.3.1.时限说明</h3><p><img src="https://i.loli.net/2021/11/18/XHDrMCaqZeLNcO8.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-3-2-新程序FA保护定值"><a href="#3-3-2-新程序FA保护定值" class="headerlink" title="3.3.2.新程序FA保护定值"></a>3.3.2.新程序FA保护定值</h3><p><img src="https://i.loli.net/2021/11/18/EoISwDNf41LABCP.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-3-3-各FA模式区别"><a href="#3-3-3-各FA模式区别" class="headerlink" title="3.3.3.各FA模式区别"></a>3.3.3.各FA模式区别</h3><p>电压时间型FA</p>
+<p>就地自适应FA</p>
+<p>压流时间型FA:</p>
+<p>无出口，下游发生故障时先等待上级跳闸，再失压分闸。</p>
+<hr>
+<p>智能就地型FA：</p>
+<p>同时具备常规保护和就地型FA逻辑，且合闸Y时限内无故障会暂时闭锁保护跳闸。</p>
+<hr>
+<h1 id="四、线路故障特征"><a href="#四、线路故障特征" class="headerlink" title="四、线路故障特征"></a>四、线路故障特征</h1><h2 id="4-1-接地故障"><a href="#4-1-接地故障" class="headerlink" title="4.1.接地故障"></a>4.1.接地故障</h2><div align= center>
+<img src="https://i.loli.net/2021/11/17/4YxylgsUJfDIRr3.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<h2 id="4-2-实际故障波形"><a href="#4-2-实际故障波形" class="headerlink" title="4.2.实际故障波形"></a>4.2.实际故障波形</h2><div align= center>
+<img src="https://i.loli.net/2021/11/17/cXiTLN8lS7KZwPe.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<div align= center>
+<img src="https://i.loli.net/2021/11/17/tpZDVCxoaA3USwf.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+<div align= center>
+<img src="https://i.loli.net/2021/11/17/jJuxYA1zUwpdqlL.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<div align= center>
+<img src="https://i.loli.net/2021/11/17/8MugoaGFbyCO5dx.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<div align= center>
+<img src="https://i.loli.net/2021/11/17/OrUYD7P9Be6vml5.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<div align= center>
+<img src="https://i.loli.net/2021/11/17/mOwbkUNIDSRT9CV.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<hr>
+<h1 id="五、FTU功能测试"><a href="#五、FTU功能测试" class="headerlink" title="五、FTU功能测试"></a>五、FTU功能测试</h1><h2 id="5-1-就地自适应FA"><a href="#5-1-就地自适应FA" class="headerlink" title="5.1.就地自适应FA"></a>5.1.就地自适应FA</h2><h3 id="5-1-1-来电延时合闸"><a href="#5-1-1-来电延时合闸" class="headerlink" title="5.1.1.来电延时合闸"></a>5.1.1.来电延时合闸</h3><p><em><strong>原理：</strong></em></p>
+<p><font color=#FF4500> 无故障记忆</font> 时的合闸时间是<font color=#FF4500> z时间</font>，<font color=/#00F5FF> 有故障记忆</font> 的得电合闸时间是<font color=/#00F5FF> x时间</font>。</p>
+<p><em><strong>状态序列：</strong></em></p>
+<div align= center>
+<img src="https://i.loli.net/2021/10/20/3xQ64qjfLgne9uT.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<hr>
+<h3 id="5-1-2-双侧失压分闸"><a href="#5-1-2-双侧失压分闸" class="headerlink" title="5.1.2.双侧失压分闸"></a>5.1.2.双侧失压分闸</h3><p><em><strong>原理：</strong></em></p>
+<p>当开关两侧失压且无电流流过时，则【无压分闸时间】自动分闸。</p>
+<p><em><strong>状态序列：</strong></em></p>
+<div align= center>
+<img src="https://i.loli.net/2021/10/20/lychiweOfqTGIka.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<hr>
+<h3 id="5-1-4-正向闭锁（Y时限）"><a href="#5-1-4-正向闭锁（Y时限）" class="headerlink" title="5.1.4.正向闭锁（Y时限）"></a>5.1.4.正向闭锁（Y时限）</h3><p><em><strong>原理：</strong></em></p>
+<p>正向闭锁功能：若开关合闸之后在[Y时间]内失压无流、或在[Y时间]内检测到单相接地故障，则立即自动分闸并闭锁正向合闸，使正向送电时开关不再合闸<font color=#FF4500> 反向来电解除闭锁</font> 。Y时间是开关合闸后的无故障确认时间。</p>
+<p><em><strong>状态序列：</strong></em></p>
+<div align= center>
+<img src="https://i.loli.net/2021/10/20/ZyJ3XvNpadj517s.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<hr>
+<h3 id="5-1-5-反向闭锁（x时限）"><a href="#5-1-5-反向闭锁（x时限）" class="headerlink" title="5.1.5.反向闭锁（x时限）"></a>5.1.5.反向闭锁（x时限）</h3><p><em><strong>原理：</strong></em></p>
+<p>反向闭锁（也称为残压闭锁）功能：本开关分位且无压无流时，当开关一侧来电时间小于[X时间]，则反向闭锁合闸，另一侧反向送电时开关不合闸，<font color=#FF4500> 正向来电解除闭锁</font> 。</p>
+<p><em><strong>状态序列：</strong></em></p>
+<div align= center>
+<img src="https://i.loli.net/2021/10/20/AJuqmYyic18VLU4.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<hr>
+<h3 id="5-1-6-双侧有压闭锁合闸"><a href="#5-1-6-双侧有压闭锁合闸" class="headerlink" title="5.1.6.双侧有压闭锁合闸"></a>5.1.6.双侧有压闭锁合闸</h3><p><em><strong>原理：</strong></em></p>
+<p>双侧有压闭锁合闸功能：检测到开关双侧有压，且开关在分位、无流时，避免自动合闸导致合环运行。</p>
+<p>解除闭锁的方只能是<font color=#FF4500> 手动合闸</font></p>
+<p><em><strong>状态序列：</strong></em></p>
+<div align= center>
+<img src="https://i.loli.net/2021/10/20/gjXENnfzTYatMAG.png" srcset="/img/loading.gif" lazyload  width = 80% height = 80%/>
+</div>
+
+
+<hr>
+<h3 id="5-1-7-人工分闸闭锁合闸"><a href="#5-1-7-人工分闸闭锁合闸" class="headerlink" title="5.1.7.人工分闸闭锁合闸"></a>5.1.7.人工分闸闭锁合闸</h3><p><em><strong>原理：</strong></em></p>
+<p>FTU手柄分闸、遥控分闸或开关本体操作分闸，闭锁来电自动合闸。此种闭锁必须通过人工合闸复归。</p>
+<p><font color=#FF4500> 拨杆拨到就地模式！！！</font></p>
+<p><em><strong>状态序列：</strong></em></p>
+<div align= center>
+<img src="https://i.loli.net/2021/10/20/38BUImVcGnbEArg.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<hr>
+<h3 id="5-1-8-正向闭锁复归"><a href="#5-1-8-正向闭锁复归" class="headerlink" title="5.1.8.正向闭锁复归"></a>5.1.8.正向闭锁复归</h3><p><em><strong>原理：</strong></em></p>
+<p>满足下列任一条件正向闭锁自动复归：</p>
+<p>a.人工合闸</p>
+<div align= center>
+<img src="https://i.loli.net/2021/10/20/oK1RgVh6iJPq7Oc.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<p>2.反向来电</p>
+<div align= center>
+<img src="https://i.loli.net/2021/10/20/iAI3qSvjXBdn71R.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<hr>
+<h3 id="5-1-9-反向闭锁复归"><a href="#5-1-9-反向闭锁复归" class="headerlink" title="5.1.9.反向闭锁复归"></a>5.1.9.反向闭锁复归</h3><p><em><strong>原理：</strong></em></p>
+<p>满足下列任一条件时，清除反向闭锁标志：</p>
+<p>1）   开关合位；</p>
+<p>2）   开关有流；</p>
+<p>3）   人工合闸（FTU手柄合闸、遥控合闸）。</p>
+<p><em><strong>状态序列：</strong></em></p>
+<div align= center>
+<img src="https://i.loli.net/2021/10/20/5JGAVMCEYt6OLFX.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<hr>
+<h3 id="5-1-10-联络合闸告警"><a href="#5-1-10-联络合闸告警" class="headerlink" title="5.1.10.联络合闸告警"></a>5.1.10.联络合闸告警</h3><p><font color=#FF4500> 1、拨杆拨到联络状态！！！</font></p>
+<p><font color=#FF4500>2、 注意修改参数定值（65号：分段0_联络1）修改后并需要<strong>重启</strong>生效！！！</font></p>
+<p>3、无压定值和有压定值更改：66V-154V</p>
+<div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/常规保护/联络合闸告警.svg" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+
+<h2 id="5-2-常规保护功能"><a href="#5-2-常规保护功能" class="headerlink" title="5.2.常规保护功能"></a>5.2.常规保护功能</h2><h3 id="5-2-1-三次重合闸"><a href="#5-2-1-三次重合闸" class="headerlink" title="5.2.1.三次重合闸"></a>5.2.1.三次重合闸</h3><p>注意点：1、<strong>整合整组复归时间需要大于三次重合闸的时间。</strong></p>
+<p>2、要注意状态1中的结束条件时间需要大于整组复归的时间，以便于重合闸充电。</p>
+<p><img src="https://i.loli.net/2021/10/11/iSefCtowTKYdDGj.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/常规保护/三次重合闸.svg" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<hr>
+<h3 id="5-2-2-大电流闭锁重合闸"><a href="#5-2-2-大电流闭锁重合闸" class="headerlink" title="5.2.2.大电流闭锁重合闸"></a>5.2.2.大电流闭锁重合闸</h3><div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/常规保护/大电流闭锁.svg" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<hr>
+<h3 id="5-2-3-残压检测"><a href="#5-2-3-残压检测" class="headerlink" title="5.2.3.残压检测"></a>5.2.3.残压检测</h3><div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/常规保护/残压检测.svg" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<hr>
+<h3 id="5-2-4-后加速"><a href="#5-2-4-后加速" class="headerlink" title="5.2.4.后加速"></a>5.2.4.后加速</h3><div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/常规保护/后加速.svg" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<hr>
+<h3 id="5-2-5-非遮断电流闭锁"><a href="#5-2-5-非遮断电流闭锁" class="headerlink" title="5.2.5.非遮断电流闭锁"></a>5.2.5.非遮断电流闭锁</h3><p><font color=#CDB38B>遮断电流定义：</font></p>
+<p>由于高压电流在断开的过程中，产生电弧，即使断路器触头分开，但电路并未断开，必须消弧才能完全断开电路电流，因此把断路器完全断开电路电流称为遮断。</p>
+<p><font color=#51a7fb>逻辑：</font>当开关合闸检测到电流，且故障电流超过负荷开关开断容量时，则启动非遮断电流保护，开关禁止分闸。</p>
+<p><font color=#51a7fb><em>测试方法：</em></font></p>
+<p><img src="https://i.loli.net/2021/10/22/TNptGqlFYnhK95y.png" srcset="/img/loading.gif" lazyload></p>
+<p>使用继保仪加状态量，加的电流量在过流定值和非遮断定值之间时SOE报 过流出口，小于过流定值时正常运行，大于非遮断定值时SOE报非遮断闭锁，<font color=#FF4500> 经过非遮断闭锁时间后非遮断闭锁会分</font>，同时报过流出口。</p>
+<p><font color=#FF4500> 前提：设置了非遮断闭锁时间(240号)。</font><font color =#FF1493>并且需要将过流时间设的大于0，不然可能闭锁不了</font></p>
+<div align= center>
+<img src="https://i.loli.net/2021/10/22/gQkiO5arU1Edlbh.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<h3 id="5-2-6-断线告警-出口"><a href="#5-2-6-断线告警-出口" class="headerlink" title="5.2.6.断线告警/出口"></a>5.2.6.断线告警/出口</h3><p><font color=#51a7fb>逻辑：</font><br> 断线告警指配网线路一次线路发生单相断线。满足断线故障特征时，经[断线告警确认时间]，发出断线告警。</p>
+<p>源测断线告警/出口：某个相电压相电流消失。</p>
+<div align= center>
+<img src="https://i.loli.net/2021/10/22/PxbULZyjS1sJRTQ.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+负荷侧断线告警/出口：某个相电流消失，其他两相电流的角度发生偏转。
+
+<div align= center>
+<img src="https://i.loli.net/2021/11/17/6KDNIxB1pktGusd.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<p><em>注意状态1需要持续一段时间。</em></p>
+<p>【负荷侧断线告警】也考虑三相电流。</p>
+<h2 id="5-3-其他功能测试"><a href="#5-3-其他功能测试" class="headerlink" title="5.3.其他功能测试"></a>5.3.其他功能测试</h2><h3 id="5-3-1-电池活化"><a href="#5-3-1-电池活化" class="headerlink" title="5.3.1.电池活化"></a>5.3.1.电池活化</h3><p><font color=#51a7fb><em>测试方法：</em></font></p>
+<ol>
+<li>将罩式F版FTU升级成被测程序版本，用Terminal维护软件连接，使用遥控控制蓄电池活化合位分位，检查SOE是否正常报电池活化合位分位。</li>
+<li>修改参数定值中的电池活化周期为1day，电池活化时刻为11hour，电池活化时间为2min，<font color=#FF1493>固化后重启FTU</font>,然后手动修改FTU的时间为当前时间1天后的10点58分。检查SOE是否在11:00正常报电池活化合位，2分钟后应正常报电池活化分位。</li>
+</ol>
+<hr>
+<h3 id="5-3-2-104通信"><a href="#5-3-2-104通信" class="headerlink" title="5.3.2.104通信"></a>5.3.2.104通信</h3><p><font color=#51a7fb><em>测试方法：</em></font></p>
+<ol>
+<li><p>用Terminal维护软件连接，设置以太网连接属性为104规约，并设置好规约参数，然后下装重启。</p>
+</li>
+<li><p>使用网线将电脑和FTU网口连接起来，打开IEC104客户端软件，将IP设为FTU网口1地址，并给电脑添加同一网段下的IP。</p>
+</li>
+<li><p>点击IEC104客户端的104连接能正常接收报文，并可正常读取FTU远传信息和进行遥控操作。</p>
+</li>
+</ol>
+<hr>
+<h3 id="5-3-3-接地方向自适应功能"><a href="#5-3-3-接地方向自适应功能" class="headerlink" title="5.3.3.接地方向自适应功能"></a>5.3.3.接地方向自适应功能</h3><div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/接地方向.svg" srcset="/img/loading.gif" lazyload  width = 70% height = 70%/>
+</div>
+
+
+<p><font color=#51a7fb><em>功能说明：</em></font></p>
+<p>​    当电压和电流反向时，接地的<code>判断依据将会相反</code>，电压和电流反极性时，视为区内，电压和电流相同极性时视为区外。<br>​    这里的<code>接地方向自适应时间</code>代表的是在该时间内检测到功率反向才可以启动自适应功能。</p>
+<p><font color=#51a7fb><em>测试结果：</em></font></p>
+<div align= center>
+<img src="https://i.loli.net/2021/11/19/7pmNPjStg1ekJOQ.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<p><font color=#51a7fb><em>测试方法：</em></font></p>
+<p>1、将保护定值的<code>接地方向自适应</code>(234号)投上，设置好功率值(235号：1.732)，以及接地自适应时间（236号）。</p>
+<p>2、使用如下状态序列进行测试：<font color=#d261ff>(<em>三相电压和三相电流反向</em>)</font></p>
+<div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/常规保护/接地方向自适应.svg" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+---
+### 5.3.4.接地/断线判三相电压
+
+<p><font color=#51a7fb><em>功能说明：</em></font></p>
+<p>​    使用状态序列测试时，接地/断线判断之前需要先<font color=#d261ff>保持三相电压</font>一段时间（100ms），否则无法正常报出，接地有保护定值（238号）。</p>
+<hr>
+<h3 id="5-3-5-接地恢复电压可设"><a href="#5-3-5-接地恢复电压可设" class="headerlink" title="5.3.5.接地恢复电压可设"></a>5.3.5.接地恢复电压可设</h3><p><font color=#51a7fb><em>功能说明：</em></font></p>
+<p>​    投上保护定值（237号）后，接地报合后如果恢复零压<font color=#d261ff>不超过</font>接地恢复零压定值（133号），那么经过接地恢复时间（125号）后，接地报分。</p>
+<h2 id="5-4-智能就地型FA"><a href="#5-4-智能就地型FA" class="headerlink" title="5.4.智能就地型FA"></a>5.4.智能就地型FA</h2><h3 id="5-4-1-来电延时合闸、无压分闸"><a href="#5-4-1-来电延时合闸、无压分闸" class="headerlink" title="5.4.1.来电延时合闸、无压分闸"></a>5.4.1.来电延时合闸、无压分闸</h3><div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/智能就地型FA/来电延时合闸无压分闸.svg" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<h3 id="5-4-2-两侧有压闭锁"><a href="#5-4-2-两侧有压闭锁" class="headerlink" title="5.4.2.两侧有压闭锁"></a>5.4.2.两侧有压闭锁</h3><div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/智能就地型FA/两侧有压闭锁.svg" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<h3 id="5-4-3-Y时限闭锁"><a href="#5-4-3-Y时限闭锁" class="headerlink" title="5.4.3.Y时限闭锁"></a>5.4.3.Y时限闭锁</h3><div align= center>
+<img src="https://i.loli.net/2021/10/19/SbxHqt3aFOwNCnM.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<h3 id="5-4-4-X时限闭锁"><a href="#5-4-4-X时限闭锁" class="headerlink" title="5.4.4.X时限闭锁"></a>5.4.4.X时限闭锁</h3><div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/智能就地型FA/x时限.svg" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<h3 id="5-4-5-速断保护"><a href="#5-4-5-速断保护" class="headerlink" title="5.4.5.速断保护"></a>5.4.5.速断保护</h3><div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/智能就地型FA/速断保护.svg" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<h3 id="5-4-6-小电流间歇性接地保护"><a href="#5-4-6-小电流间歇性接地保护" class="headerlink" title="5.4.6.小电流间歇性接地保护"></a>5.4.6.小电流间歇性接地保护</h3><div align= center>
+<img src="https://i.loli.net/2021/10/19/2jRoAlDKgOzv695.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<h3 id="5-4-7-小电流永久性接地保护"><a href="#5-4-7-小电流永久性接地保护" class="headerlink" title="5.4.7.小电流永久性接地保护"></a>5.4.7.小电流永久性接地保护</h3><div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/智能就地型FA/永久性接地0.svg" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<h3 id="5-4-8-重合闸和y时限分闸闭锁"><a href="#5-4-8-重合闸和y时限分闸闭锁" class="headerlink" title="5.4.8.重合闸和y时限分闸闭锁"></a>5.4.8.重合闸和y时限分闸闭锁</h3><p>备注： <font color=#FF4500>FA闭锁保护时间</font> (226号)</p>
+<div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/配网笔记相关图片/智能就地型FA/重合闸和闭锁0.svg" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+### 5.4.9.重合闸闭锁
+
+<div align= center>
+<img src="https://i.loli.net/2021/10/19/mgEYorsWJT819kZ.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<h3 id="5-4-10-拓扑图——过流接地故障处理"><a href="#5-4-10-拓扑图——过流接地故障处理" class="headerlink" title="5.4.10.拓扑图——过流接地故障处理"></a>5.4.10.拓扑图——过流接地故障处理</h3><p><img src="https://i.loli.net/2021/10/14/SokMTVqCWd1QwZG.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><font color=#FF4500> 相对于FS1：</font> </li>
+</ul>
+<ol>
+<li><p><em><strong>FS1后故障，或者FS4后发生故障但是FS4拒动（FS4相当于导线）</strong></em></p>
+<p>备注：该表表头应为FS1后故障</p>
+</li>
+</ol>
+<div align= center>
+<img src="https://i.loli.net/2021/10/19/GOM1EpSkZPiKVfW.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+2. ***FS4后故障并将FS1开关顶跳***
+   备注：设置226时最好将时间设置的稍长一些
+
+<div align= center>
+<img src="https://i.loli.net/2021/10/19/iKsBeR2d5CIFzLX.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<ul>
+<li><font color=#FF4500> 相对于FS4：</font> </li>
+</ul>
+<ol>
+<li>FS4后发生故障</li>
+</ol>
+<div align= center>
+<img src="https://i.loli.net/2021/10/19/4yX1AeQVuRG6zO9.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+
+<ol start="2">
+<li>FS4后发生故障并将FS1顶跳</li>
+</ol>
+<div align= center>
+<img src="https://i.loli.net/2021/10/19/F93VtNZ8UGfcBOp.png" srcset="/img/loading.gif" lazyload  width = 100% height = 100%/>
+</div>
+ 
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/">工作笔记</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    感谢您的阅读，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/14/800%E5%8F%A5%E8%AE%B0%E5%8D%95%E8%AF%8D/">
+                        <span class="hidden-mobile">800句记单词</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://wawowcl.top/" target="_blank" rel="nofollow noopener"><span>Wangcl</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

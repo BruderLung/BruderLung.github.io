@@ -1,0 +1,555 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="欢迎来到我的笔记！">
+  <meta name="author" content="wangcl">
+  <meta name="keywords" content="notebook">
+  <meta name="description" content="1、八数码游戏简介​        八数码问题（又称九宫排字问题）是人工智能中有名的难题之一。问题是在3×3方格盘上，放有八个数码：从1到8，剩余第九个为空也可以用0来表示，每一空格的周围的数码可移至空格。 ​        问题给定初始状态和目标状态，要求通过一系列的数码移动，将初始状态转化为目标状态。 2.问题的形式化2.1 状态​        该问题，由9个空格组成，需要由初始状态移动成为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="迭代加深算法求八数码最优解">
+<meta property="og:url" content="https://bruderlung.github.io/2020/04/02/%E5%85%AB%E6%95%B0%E7%A0%81/index.html">
+<meta property="og:site_name" content="Wangcl&#39;s NoteBook">
+<meta property="og:description" content="1、八数码游戏简介​        八数码问题（又称九宫排字问题）是人工智能中有名的难题之一。问题是在3×3方格盘上，放有八个数码：从1到8，剩余第九个为空也可以用0来表示，每一空格的周围的数码可移至空格。 ​        问题给定初始状态和目标状态，要求通过一系列的数码移动，将初始状态转化为目标状态。 2.问题的形式化2.1 状态​        该问题，由9个空格组成，需要由初始状态移动成为">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/人工智能图库/八数码游戏.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/人工智能图库/八数码流程.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/人工智能图库/算法流程图.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/人工智能图库/1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/人工智能图库/3.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/人工智能图库/2.png">
+<meta property="article:published_time" content="2020-04-02T10:37:03.000Z">
+<meta property="article:modified_time" content="2021-11-19T06:51:47.767Z">
+<meta property="article:author" content="wangcl">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/人工智能图库/八数码游戏.png">
+  
+  <title>迭代加深算法求八数码最优解 - Wangcl&#39;s NoteBook</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"bruderlung.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Wangcl&#39;s NoteBook</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-music"></i>
+                Music
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Collection/">
+                <i class="iconfont icon-bookmark"></i>
+                收藏夹
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="迭代加深算法求八数码最优解">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-04-02 18:37" pubdate>
+        2020年4月2日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">迭代加深算法求八数码最优解</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1、八数码游戏简介"><a href="#1、八数码游戏简介" class="headerlink" title="1、八数码游戏简介"></a>1、八数码游戏简介</h1><p>​        八数码问题（又称九宫排字问题）是人工智能中有名的难题之一。问题是在3×3方格盘上，放有八个数码：从1到8，剩余第九个为空也可以用0来表示，每一空格的周围的数码可移至空格。</p>
+<p>​        问题给定初始状态和目标状态，要求通过一系列的数码移动，将初始状态转化为目标状态。</p>
+<h1 id="2-问题的形式化"><a href="#2-问题的形式化" class="headerlink" title="2.问题的形式化"></a>2.问题的形式化</h1><h2 id="2-1-状态"><a href="#2-1-状态" class="headerlink" title="2.1 状态"></a>2.1 状态</h2><p>​        该问题，由9个空格组成，需要由初始状态移动成为目标状态，但是每次只能将空格旁的数字进行位置的互换，也就是说，该问题的每一个状态都是空格进行“向上”、“向下”、“向左”、“向右”，运动后的状态即：八个数字滑块每个占据一个方格，而空格（0）位于最后一个方格。</p>
+<div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/人工智能图库/八数码游戏.png" srcset="/img/loading.gif" lazyload  width = 80% height = 80%/>
+</div>
+
+<h2 id="2-2-行动"><a href="#2-2-行动" class="headerlink" title="2.2 行动"></a>2.2 行动</h2><p>​    1、当空格在正中间时，空格可以进行上下左右的移动。但是当空格在外围时，就要具体分析：<br>​        (1)    在正左边时，可以“向上”、“向下”、“向右”；<br>​        (2)    在正右边时，可以“向上”、“向下”、“向左”；<br>​        (3)    在正上边时，可以“向下”、“向左”、“向右”；<br>​        (4)    在正下边时，可以“向上”、“向左”、“向右”；<br>​        (5)    在左上角时，可以“向下”、“向右”；<br>​        (6)    在右上角时，可以“向下”、“向左”；<br>​        (7)    在右下角时，可以“向上”、“向左”；<br>​        (8)    在左下角时，可以“向上”、“向右”；</p>
+<p>​    2、图演示：</p>
+<div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/人工智能图库/八数码流程.png" srcset="/img/loading.gif" lazyload  width = 80% height = 80%/>
+</div>
+
+<h2 id="2-3-路径代价"><a href="#2-3-路径代价" class="headerlink" title="2.3 路径代价"></a>2.3 路径代价</h2><p>​    八数码问题的路径代价可以用由初始状态经过变换成为目标状态所需要的移动步数。也就是完成移动时“空格”的移动次数。</p>
+<h1 id="3-搜索算法"><a href="#3-搜索算法" class="headerlink" title="3.搜索算法"></a>3.搜索算法</h1><h2 id="3-1-算法的步骤"><a href="#3-1-算法的步骤" class="headerlink" title="3.1 算法的步骤"></a>3.1 算法的步骤</h2><p>1、输入起始状态和目标状态</p>
+<p>2、初始化，给定初始数据</p>
+<p>3、判断起始状态中空格的位置</p>
+<p>4、建立循环，深度限制预设为1</p>
+<p>5、进行深度搜索寻找结果</p>
+<p>6、更新深度限制，再次进行深度搜索直到成为目标状态</p>
+<p>7、结束时输出移动过程</p>
+<h2 id="3-2-算法的流程图"><a href="#3-2-算法的流程图" class="headerlink" title="3.2 算法的流程图"></a>3.2 算法的流程图</h2><div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/人工智能图库/算法流程图.png" srcset="/img/loading.gif" lazyload  width = 80% height = 80%/>
+</div>
+
+<h1 id="4-算法实现"><a href="#4-算法实现" class="headerlink" title="4.算法实现"></a>4.算法实现</h1><h2 id="4-1深度限制更新"><a href="#4-1深度限制更新" class="headerlink" title="4.1深度限制更新"></a>4.1深度限制更新</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#更新深度限制，并输出结果</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">deepupdate</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>):<br>            self.numlist=numlist    <span class="hljs-comment">###再次初始化</span><br>            self.movelist=[]<br>            self.allState=<span class="hljs-built_in">set</span>()<br>            self.solve()<br>            self.deep=self.deep+<span class="hljs-number">1</span>    <span class="hljs-comment">#更新深度限制</span><br>            <span class="hljs-keyword">if</span> self.flag==<span class="hljs-number">1</span>:<span class="hljs-comment">##如果正确状态flag==1就结束</span><br>                <span class="hljs-keyword">break</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;移动完成_使用迭代加深&quot;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;零的移动方向：&quot;</span>)<br>        self.printRoute()<br>        <br></code></pre></td></tr></table></figure>
+
+<h2 id="4-2搜索代码"><a href="#4-2搜索代码" class="headerlink" title="4.2搜索代码"></a>4.2搜索代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 添加self.deep作为深度限制，从1开始增加</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">search</span>(<span class="hljs-params">self, direction</span>):</span><br>        <span class="hljs-keyword">if</span> self.canMove(direction) <span class="hljs-keyword">and</span> <span class="hljs-built_in">len</span>(self.movelist) &lt; self.deep:<span class="hljs-comment">##是否满足搜索的条件</span><br>            self.move(direction)	<span class="hljs-comment">#进行正向移动</span><br>            <span class="hljs-keyword">if</span> self.win == <span class="hljs-built_in">str</span>(self.numlist):		<br>                self.flag=<span class="hljs-number">1</span>	<span class="hljs-comment">#如果已成为目标状态，flag置1，跳出深度限制的递增</span><br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">str</span>(self.numlist) <span class="hljs-keyword">in</span> self.allState:	<span class="hljs-comment">#如果反向移动了就返回上一次的状态</span><br>                self.moveBack(direction)<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>            self.allState.add(<span class="hljs-built_in">str</span>(self.numlist))<br>			<span class="hljs-comment">#继续进行搜索</span><br>            searchAll = self.search(<span class="hljs-number">2</span>) <span class="hljs-keyword">or</span> self.search(<span class="hljs-number">4</span>) <span class="hljs-keyword">or</span> self.search(<span class="hljs-number">1</span>) <span class="hljs-keyword">or</span> self.search(<span class="hljs-number">3</span>)<br>            <span class="hljs-keyword">if</span> searchAll:<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>            <span class="hljs-keyword">else</span>:<br>                self.moveBack(direction)<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="4-3移动位置代码"><a href="#4-3移动位置代码" class="headerlink" title="4.3移动位置代码"></a>4.3移动位置代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 向前移动，坐标正向的移动（坐标交换）</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">move</span>(<span class="hljs-params">self, direction</span>):</span><br>        <span class="hljs-keyword">if</span> moving.left.value == direction:<span class="hljs-comment">#如果是左移x不变，y减一</span><br>            self.numlist[self.x][self.y], self.numlist[self.x][self.y - <span class="hljs-number">1</span>] = \<br>                self.numlist[self.x][self.y - <span class="hljs-number">1</span>], self.numlist[self.x][self.y]<br>            self.y = self.y - <span class="hljs-number">1</span><br>        <span class="hljs-keyword">if</span> moving.right.value == direction:<span class="hljs-comment"># 如果是右移x不变，y加一</span><br>            self.numlist[self.x][self.y], self.numlist[self.x][self.y + <span class="hljs-number">1</span>] = \<br>                self.numlist[self.x][self.y + <span class="hljs-number">1</span>], self.numlist[self.x][self.y]<br>            self.y = self.y + <span class="hljs-number">1</span><br>        <span class="hljs-keyword">if</span> moving.up.value == direction:<span class="hljs-comment"># 如果是上移y不变，x减一</span><br>            self.numlist[self.x][self.y], self.numlist[self.x - <span class="hljs-number">1</span>][self.y] = \<br>                self.numlist[self.x - <span class="hljs-number">1</span>][self.y], self.numlist[self.x][self.y]<br>            self.x = self.x - <span class="hljs-number">1</span><br>        <span class="hljs-keyword">if</span> moving.down.value == direction:<span class="hljs-comment"># 如果是上移y不变，x加一</span><br>            self.numlist[self.x][self.y], self.numlist[self.x + <span class="hljs-number">1</span>][self.y] = \<br>                self.numlist[self.x + <span class="hljs-number">1</span>][self.y], self.numlist[self.x][self.y]<br>            self.x = self.x + <span class="hljs-number">1</span><br>        self.movelist.append(direction)<span class="hljs-comment">#将移动方式保存</span><br><br></code></pre></td></tr></table></figure>
+
+<h2 id="4-4判断是否可以移动"><a href="#4-4判断是否可以移动" class="headerlink" title="4.4判断是否可以移动"></a>4.4判断是否可以移动</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">canMove</span>(<span class="hljs-params">self, direction</span>):</span><br>       <span class="hljs-keyword">if</span> moving.left.value == direction:  <span class="hljs-comment">#1=左移</span><br>           <span class="hljs-keyword">return</span> self.y &gt; <span class="hljs-number">0</span>	<span class="hljs-comment">#左边是否有多余位置</span><br>       <span class="hljs-keyword">if</span> moving.right.value == direction:  <span class="hljs-comment">#2=右移</span><br>           <span class="hljs-keyword">return</span> self.y &lt; <span class="hljs-number">2</span>	<span class="hljs-comment">#右边是否有多余位置</span><br>       <span class="hljs-keyword">if</span> moving.up.value == direction:  <span class="hljs-comment">#3=上移</span><br>           <span class="hljs-keyword">return</span> self.x &gt; <span class="hljs-number">0</span>	<span class="hljs-comment">#上边是否有多余位置</span><br>       <span class="hljs-keyword">if</span> moving.down.value == direction:  <span class="hljs-comment">#4=下移</span><br>           <span class="hljs-keyword">return</span> self.x &lt; <span class="hljs-number">2</span>	<span class="hljs-comment">#下边是否有多余位置</span><br></code></pre></td></tr></table></figure>
+<h1 id="5-结果展示"><a href="#5-结果展示" class="headerlink" title="5.结果展示"></a>5.结果展示</h1><p>7 2 4 5 0 6 8 3 1 → 0 1 2 3 4 5 6 7 8</p>
+<div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/人工智能图库/1.png" srcset="/img/loading.gif" lazyload  width = 80% height = 80%/>
+</div>
+
+<p>7 2 4 5 0 6 8 3 1 → 1 2 3 4 5 6 7 8 0</p>
+<div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/人工智能图库/3.png" srcset="/img/loading.gif" lazyload  width = 80% height = 80%/>
+</div>
+
+<p>2 8 3 1 6 4 7 0 5 → 1 2 3 8 0 4 7 6 5</p>
+<div align= center>
+<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/人工智能图库/2.png" srcset="/img/loading.gif" lazyload  width = 80% height = 80%/>
+</div>
+
+
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/python/">python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    感谢您的阅读，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/04/22/%E4%BC%A0%E9%80%92%E6%A8%A1%E7%B3%8A%E7%9F%A9%E9%98%B5%E7%9A%84%E5%88%A4%E6%96%AD/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">传递模糊矩阵的判断</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/27/%E5%85%AB%E5%88%86%E6%B3%95%E4%B8%AD%E7%82%B9%E7%94%BB%E5%9C%86/">
+                        <span class="hidden-mobile">八分法中点画圆</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://wawowcl.top/" target="_blank" rel="nofollow noopener"><span>Wangcl</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
