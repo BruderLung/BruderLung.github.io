@@ -4,13 +4,50 @@
   
   
   <entry>
-    <title>iar调试查看变量的方法</title>
+    <title>正则表达式</title>
+    <link href="/2021/12/01/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <url>/2021/12/01/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h1><ul><li><p><font color=#51a7fb>^ 非集.</font>匹配不在集合中的任何字符。</p></li><li><p><font color=#51a7fb>\w 单词.</font>匹配字母、数字、下划线。等价于 [A-Za-z0-9_]</p></li><li><p><font color=#51a7fb>\W 非词匹配.</font>匹配非字母、数字、下划线。</p></li><li><p><font color=#51a7fb>\d 数字.</font>匹配任意数字 (0-9). 等价于 [0-9].</p></li><li><p><font color=#51a7fb>\D 非数字.</font>匹配任意非数字字符 (0-9). </p></li><li><p><font color=#51a7fb>[\s\S] 完全匹配.</font>可以用来匹配所有字符</p></li><li><p><font color=#51a7fb>.  点.</font>匹配除换行符之外的任何字符。</p></li></ul><center><a href="https://regexr-cn.com/">点击<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/在线学习.svg" border="0" height="24" width="24" >去测试</a></center><h1 id="锚定"><a href="#锚定" class="headerlink" title="锚定"></a>锚定</h1><ul><li><p><font color=#51a7fb>^ 开头匹配 </font>字符串开头 使用多行标志(m)时，匹配开头行 这个会匹配到位置不是字符。</p></li><li><p><font color=#51a7fb>$ </font>匹配字符串结尾</p></li><li><p><font color=#51a7fb>\b 匹配一个单词边界</font>，也就是指单词和空格间的位置。</p></li><li><p><font color=#51a7fb>\B 匹配非单词边界</font> 这个会匹配到位置，而不是字符。</p></li></ul><center><a href="https://regexr-cn.com/">点击<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/在线学习.svg" border="0" height="24" width="24" >去测试</a></center><h1 id="前后查找"><a href="#前后查找" class="headerlink" title="前后查找"></a>前后查找</h1><ul><li><p><font color=#51a7fb>\d(?=px)  正向先行断言.</font>匹配px前面的数字而不将px包含在结果中。</p></li><li><p><font color=#51a7fb>\d(?！px)  负向先行断言.</font>匹配非px前面的数字而不将非px包含在结果中。</p></li></ul><center><a href="https://regexr-cn.com/">点击<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/在线学习.svg" border="0" height="24" width="24" >去测试</a></center><h1 id="量词-amp-多选"><a href="#量词-amp-多选" class="headerlink" title="量词&amp;多选"></a>量词&amp;多选</h1><ul><li><p><font color=#51a7fb>+ 量词.</font>匹配1或更多个前面的标记</p></li><li><p><font color=#51a7fb>* 量词.</font>匹配0或更多个前面的标记</p></li><li><p><font color=#51a7fb>{1,3}  量词. </font>{1,3} 会匹配1个到3个。{3} 会匹配正好3个。{3,} 会匹配3个或更多。</p></li><li><p><font color=#51a7fb>?  可选项.</font>匹配0个或1个前面的标记，用于标为可选项。</p></li><li><p><font color=#51a7fb>|  多选.</font>匹配|前面的或后面的表达式</p></li></ul><center><a href="https://regexr-cn.com/">点击<img src="https://cdn.jsdelivr.net/gh/BruderLung/mybook/index/在线学习.svg" border="0" height="24" width="24" >去测试</a></center><h2 id="简单举例"><a href="#简单举例" class="headerlink" title="简单举例"></a>简单举例</h2>  <div class="group-image-container"><div class="group-image-row"><div class="group-image-wrap"><img src="https://i.loli.net/2021/12/01/HJLi9P48Vcd3eQ2.png"></div><div class="group-image-wrap"><img src="https://i.loli.net/2021/12/01/9rdL3wBE12zHsec.png"></div></div><div class="group-image-row"><div class="group-image-wrap"><img src="https://i.loli.net/2021/12/01/PimU9LdsnzjNMVp.png"></div><div class="group-image-wrap"><img src="https://i.loli.net/2021/12/01/EF1YSluBHaqOyRC.png"></div><div class="group-image-wrap"><img src="https://i.loli.net/2021/12/01/1tuyo9bMdplvRUC.png"></div></div></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>学无止境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>办公辅助</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>iar在线调试查看变量的方法</title>
     <link href="/2021/11/30/iar%E8%B0%83%E8%AF%95%E6%9F%A5%E7%9C%8B%E5%8F%98%E9%87%8F%E7%9A%84%E6%96%B9%E6%B3%95/"/>
     <url>/2021/11/30/iar%E8%B0%83%E8%AF%95%E6%9F%A5%E7%9C%8B%E5%8F%98%E9%87%8F%E7%9A%84%E6%96%B9%E6%B3%95/</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="1、全局变量"><a href="#1、全局变量" class="headerlink" title="1、全局变量"></a>1、全局变量</h1><p>当要查看的变量是全局变量时可以按照如下步骤找到</p><p><img src="https://i.loli.net/2021/11/30/HZkXWoJeiQ5MbES.png"></p><p>在Expression下输入要查看的变量，如图所示可以查看变量的值，地址和类型</p><p><img src="https://i.loli.net/2021/11/30/lrzTGCKg7DpuFne.png"></p><h1 id="2、局部变量"><a href="#2、局部变量" class="headerlink" title="2、局部变量"></a>2、局部变量</h1><p>如果是局部变量上面的方法就不再适用，这时可以采用添加断点的方法，程序运行到断点时将鼠标移动到要观察的局部变量上，便可显示出当前的值，但是要注意此时显示的值是运行到断点时的值。而不是前面任意一步的值例如：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">x = <span class="hljs-number">0</span>;<br>x = <span class="hljs-number">1</span>;<br>x = <span class="hljs-number">2</span>;<br></code></pre></td></tr></table></figure><p>在上述程序段中当断点设置在第三行时，鼠标指向任意x时，显示的值都为1。</p>]]></content>
     
     
+    <categories>
+      
+      <category>工作笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>iar</tag>
+      
+    </tags>
     
   </entry>
   
