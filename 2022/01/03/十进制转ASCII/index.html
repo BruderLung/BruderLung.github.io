@@ -18,23 +18,22 @@
   <meta name="description" content="欢迎来到我的笔记！">
   <meta name="author" content="wangcl">
   <meta name="keywords" content="notebook">
-  <meta name="description" content="1、全局变量当要查看的变量是全局变量时可以按照如下步骤找到  在Expression下输入要查看的变量，如图所示可以查看变量的值，地址和类型  2、局部变量如果是局部变量上面的方法就不再适用，这时可以采用添加断点的方法，程序运行到断点时将鼠标移动到要观察的局部变量上，便可显示出当前的值，但是要注意此时显示的值是运行到断点时的值。而不是前面任意一步的值例如： 123x &#x3D; 0;x &#x3D; 1;x &#x3D; 2">
+  <meta name="description" content="函数①将数组中的十进制转为ASICC字符12345678910111213141516171819202122&#x2F;*函数名称：将数组中的十进制转为ASICC字符时    间：2022.01.03*&#x2F;#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;string.h&gt;int main(void)&amp;#123;    int">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iar在线调试查看变量的方法">
-<meta property="og:url" content="https://bruderlung.github.io/2021/11/30/iar%E8%B0%83%E8%AF%95%E6%9F%A5%E7%9C%8B%E5%8F%98%E9%87%8F%E7%9A%84%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:title" content="十进制转ASCII">
+<meta property="og:url" content="https://bruderlung.github.io/2022/01/03/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%ACASCII/index.html">
 <meta property="og:site_name" content="Wangcl&#39;s NoteBook">
-<meta property="og:description" content="1、全局变量当要查看的变量是全局变量时可以按照如下步骤找到  在Expression下输入要查看的变量，如图所示可以查看变量的值，地址和类型  2、局部变量如果是局部变量上面的方法就不再适用，这时可以采用添加断点的方法，程序运行到断点时将鼠标移动到要观察的局部变量上，便可显示出当前的值，但是要注意此时显示的值是运行到断点时的值。而不是前面任意一步的值例如： 123x &#x3D; 0;x &#x3D; 1;x &#x3D; 2">
+<meta property="og:description" content="函数①将数组中的十进制转为ASICC字符12345678910111213141516171819202122&#x2F;*函数名称：将数组中的十进制转为ASICC字符时    间：2022.01.03*&#x2F;#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;string.h&gt;int main(void)&amp;#123;    int">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.loli.net/2021/11/30/HZkXWoJeiQ5MbES.png">
-<meta property="og:image" content="https://i.loli.net/2021/11/30/lrzTGCKg7DpuFne.png">
-<meta property="article:published_time" content="2021-11-30T09:05:34.514Z">
-<meta property="article:modified_time" content="2021-11-30T09:00:52.127Z">
+<meta property="og:image" content="https://s2.loli.net/2022/01/05/msnBlSFDILE6VA7.png">
+<meta property="article:published_time" content="2022-01-03T07:09:33.000Z">
+<meta property="article:modified_time" content="2022-01-05T08:16:44.475Z">
 <meta property="article:author" content="wangcl">
-<meta property="article:tag" content="iar">
+<meta property="article:tag" content="notebook">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i.loli.net/2021/11/30/HZkXWoJeiQ5MbES.png">
+<meta name="twitter:image" content="https://s2.loli.net/2022/01/05/msnBlSFDILE6VA7.png">
   
-  <title>iar在线调试查看变量的方法 - Wangcl&#39;s NoteBook</title>
+  <title>十进制转ASCII - Wangcl&#39;s NoteBook</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -194,7 +193,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="iar在线调试查看变量的方法">
+            <span class="h2" id="subtitle" title="十进制转ASCII">
               
             </span>
 
@@ -204,8 +203,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-11-30 17:05" pubdate>
-        2021年11月30日 下午
+      <time datetime="2022-01-03 15:09" pubdate>
+        2022年1月3日 下午
       </time>
     </span>
   
@@ -215,7 +214,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      225 字
+      1.1k 字
     </span>
   
 
@@ -224,7 +223,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      4 分钟
     </span>
   
 
@@ -261,37 +260,42 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">iar在线调试查看变量的方法</h1>
+            <h1 style="display: none">十进制转ASCII</h1>
             
             <div class="markdown-body">
-              <h1 id="1、全局变量"><a href="#1、全局变量" class="headerlink" title="1、全局变量"></a>1、全局变量</h1><p>当要查看的变量是全局变量时可以按照如下步骤找到</p>
-<p><img src="https://i.loli.net/2021/11/30/HZkXWoJeiQ5MbES.png" srcset="/img/loading.gif" lazyload></p>
-<p>在Expression下输入要查看的变量，如图所示可以查看变量的值，地址和类型</p>
-<p><img src="https://i.loli.net/2021/11/30/lrzTGCKg7DpuFne.png" srcset="/img/loading.gif" lazyload></p>
-<h1 id="2、局部变量"><a href="#2、局部变量" class="headerlink" title="2、局部变量"></a>2、局部变量</h1><p>如果是局部变量上面的方法就不再适用，这时可以采用添加断点的方法，程序运行到断点时将鼠标移动到要观察的局部变量上，便可显示出当前的值，但是要注意此时显示的值是运行到断点时的值。而不是前面任意一步的值例如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">x = <span class="hljs-number">0</span>;<br>x = <span class="hljs-number">1</span>;<br>x = <span class="hljs-number">2</span>;<br></code></pre></td></tr></table></figure>
+              <h1 id="函数①将数组中的十进制转为ASICC字符"><a href="#函数①将数组中的十进制转为ASICC字符" class="headerlink" title="函数①将数组中的十进制转为ASICC字符"></a>函数①<sup>将数组中的十进制转为ASICC字符</sup></h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*</span><br><span class="hljs-comment">函数名称：将数组中的十进制转为ASICC字符</span><br><span class="hljs-comment">时    间：2022.01.03</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> a[] = &#123; <span class="hljs-number">72</span>,<span class="hljs-number">101</span>,<span class="hljs-number">108</span>,<span class="hljs-number">108</span>,<span class="hljs-number">111</span>,<span class="hljs-number">44</span>,<span class="hljs-number">119</span>,<span class="hljs-number">111</span>,<span class="hljs-number">114</span>,<span class="hljs-number">108</span>,<span class="hljs-number">100</span>,<span class="hljs-number">33</span>&#125;;<span class="hljs-comment">//待转换十进制</span><br>    <span class="hljs-keyword">int</span> size = <span class="hljs-keyword">sizeof</span>(a)/<span class="hljs-keyword">sizeof</span>(a[<span class="hljs-number">0</span>]);<span class="hljs-comment">//求数组大小</span><br>    <span class="hljs-keyword">char</span> *s = <span class="hljs-built_in">malloc</span>(size);<span class="hljs-comment">//分配内存</span><br>    <span class="hljs-keyword">char</span> *str = s;<br>    <span class="hljs-built_in">memset</span>(s,<span class="hljs-number">0</span>,size);<span class="hljs-comment">//将内存中的内容全部设置0</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; size; i++)<br>    &#123;<br>        *s = a[i];<span class="hljs-comment">//赋值</span><br>        s++;<span class="hljs-comment">//内存地址增加</span><br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>,str);<span class="hljs-comment">//输出结果</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>在上述程序段中当断点设置在第三行时，鼠标指向任意x时，显示的值都为1。</p>
+<h4 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a><em>运行结果：</em></h4><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-built_in">Hello,</span>world!<br></code></pre></td></tr></table></figure>
+
+<h4 id="穷源竟委："><a href="#穷源竟委：" class="headerlink" title="穷源竟委："></a><em>穷源竟委：</em></h4><p>[^穷源竟委]:意思是比喻弄清事物的发展过程。 [1] 出自《<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%A4%BC%E8%AE%B0%C2%B7%E5%AD%A6%E8%AE%B0/5912314">礼记·学记</a>》。</p>
+<ol>
+<li><p>char *s</p>
+<p> 定义了一个char型的指针，它只知道所指向的内存单元，并不知道这个内存单元有多大</p>
+</li>
+</ol>
+<p>当char *s = “hello”;后,不能使用s[0]=’a’；语句进行赋值。这是将提示内存不能为”written”</p>
+<ol start="2">
+<li><p>char s[]=”hello”</p>
+<p> 完全可以使用s[0]=’a’；进行赋值，这是常规的数组操作。</p>
+</li>
+<li><p>char s[] = “hello”; char *p = s;</p>
+<p> 也可以使用p[0] = ‘a’;因为这是p ==s，都是指向数组的指针。</p>
+</li>
+<li><p>char *s = (char *)malloc(n);</p>
+<p> 其中n为要开辟空间的大小，char s[n];定义的也是一个指向数组的指针，便可进行数组的下标操作。</p>
+</li>
+</ol>
+<h1 id="函数②将字符串中的十六进制数转为十进制整数"><a href="#函数②将字符串中的十六进制数转为十进制整数" class="headerlink" title="函数②将字符串中的十六进制数转为十进制整数"></a>函数②<sup>将字符串中的十六进制数转为十进制整数</sup></h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*</span><br><span class="hljs-comment">函数名称：将字符串中的十六进制数转为十进制整数</span><br><span class="hljs-comment">时    间：2022.01.03</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>   <span class="hljs-keyword">char</span> str[<span class="hljs-number">30</span>] = <span class="hljs-string">&quot;0x13461B7&quot;</span>;<span class="hljs-comment">//定义字符串</span><br>   <span class="hljs-keyword">char</span> *ptr;<span class="hljs-comment">//定义指针</span><br>   <span class="hljs-keyword">long</span> ret;<br>   ret = strtol(str, &amp;ptr, <span class="hljs-number">16</span>);<span class="hljs-comment">//参数16代表的是待转换的为十六进制</span><br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;十进制数是 %ld\n&quot;</span>, ret);<br>   <span class="hljs-keyword">return</span>(<span class="hljs-number">0</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="运行结果：-1"><a href="#运行结果：-1" class="headerlink" title="运行结果："></a><em>运行结果：</em></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">十进制数是 <span class="hljs-number">20210103</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p><img src="https://s2.loli.net/2022/01/05/msnBlSFDILE6VA7.png" srcset="/img/loading.gif" lazyload alt="image-20220105160558898"></p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/">工作笔记</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/iar/">iar</a>
-                    
-                  </div>
                 
               </div>
               
@@ -306,18 +310,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/03/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%ACASCII/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">十进制转ASCII</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/11/28/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
-                        <span class="hidden-mobile">正则表达式</span>
+                      <a href="/2021/11/30/iar%E8%B0%83%E8%AF%95%E6%9F%A5%E7%9C%8B%E5%8F%98%E9%87%8F%E7%9A%84%E6%96%B9%E6%B3%95/">
+                        <span class="hidden-mobile">iar在线调试查看变量的方法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
