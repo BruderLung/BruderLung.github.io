@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>vscode搜索问题</title>
+    <title>vscode快捷操作</title>
     <link href="/2022/03/02/vscode%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98/"/>
     <url>/2022/03/02/vscode%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98/</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="一、在选定内容中查找"><a href="#一、在选定内容中查找" class="headerlink" title="一、在选定内容中查找"></a>一、在选定内容中查找</h1><p>「在选定内容中查找」用户可以根据需求设置该功能的效果</p><p>:one:：设置</p><p>:two:：搜索 <kbd>Auto Find In Selection</kbd></p><p><img src="https://s2.loli.net/2022/03/02/dGqrOH3pL9Aul52.png" alt="选定内容查找"></p><ul><li>never：从不打开</li><li>always：总是打开</li><li>multiline：根据选中的内容自动判断是否打开该功能（<strong>推荐</strong>）</li></ul>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="一、在选定内容中查找"><a href="#一、在选定内容中查找" class="headerlink" title="一、在选定内容中查找"></a>一、在选定内容中查找</h1><p>「在选定内容中查找」用户可以根据需求设置该功能的效果</p><p>:one:：设置</p><p>:two:：搜索 <kbd>Auto Find In Selection</kbd></p><p><img src="https://s2.loli.net/2022/03/02/dGqrOH3pL9Aul52.png" alt="选定内容查找"></p><ul><li><p>never：从不打开</p></li><li><p>always：总是打开</p></li><li><p>multiline：根据选中的内容自动判断是否打开该功能（<strong>推荐</strong>）</p></li></ul><h1 id="二、复制多行到多行，一行添加一行"><a href="#二、复制多行到多行，一行添加一行" class="headerlink" title="二、复制多行到多行，一行添加一行"></a>二、复制多行到多行，一行添加一行</h1><p>首先使用鼠标<kbd>中键</kbd>标记好需要粘贴的位置，然后使用按住<kbd>Alt</kbd>,鼠标右键粘贴，如下操作。</p><p><img src="https://s2.loli.net/2022/03/08/tB5lJWkGsnyVF9a.gif" alt="vscode复制问题"></p>]]></content>
     
     
     <categories>
